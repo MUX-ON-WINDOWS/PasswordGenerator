@@ -2,7 +2,7 @@
 # Language Pyhton
 import random
 import json
-import const
+import assets.const as const
 
 def generatePassword():
     # Use default question.

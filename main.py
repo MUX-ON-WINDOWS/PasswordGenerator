@@ -1,5 +1,5 @@
 from generate import generatePassword
-from banner import banner
+from assets.banner import banner
 
 banner()
 
