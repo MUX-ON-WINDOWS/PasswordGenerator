@@ -5,12 +5,14 @@ import json
 import const
 
 def generatePassword():
-    # Defaults
+    # Use default question.
     dataCheckDefault = input("Default settings? (y/n): ")
     if dataCheckDefault.lower() == 'yes' or dataCheckDefault.lower() == 'y':
         Use_for = const.lower_case + const.upper_case + const.numbers + const.special_characters
     elif dataCheckDefault.lower() == 'no' or dataCheckDefault.lower() == 'n':
+        # Displays possible options for custom password generation.
         print(const.options)
+        # Asks user to input the options they want to use.
         askData = input("What lower case characters do you want? (1-4): ")
 
         if askData == '1':
