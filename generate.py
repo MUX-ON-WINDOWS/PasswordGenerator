@@ -1,6 +1,5 @@
 # Password generator Python
 import random as Generate
-import json as jsonFile
 import assets.const as const
 from assets.custom import writeData
 
