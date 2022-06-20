@@ -1,8 +1,8 @@
-# Password generator
-# Language Pyhton
-import random
-import json
+# Password generator Python
+import random as Generate
+import json as jsonFile
 import assets.const as const
+from assets.custom import writeData
 
 def generatePassword():
     # Use default question.
@@ -12,17 +12,21 @@ def generatePassword():
     elif dataCheckDefault.lower() == 'no' or dataCheckDefault.lower() == 'n':
         # Displays possible options for custom password generation.
         print(const.options)
+
         # Asks user to input the options they want to use.
         askData = input("What lower case characters do you want? (1-4): ")
-
-        if askData == '1':
-            Use_for = const.lower_case + const.upper_case
-        elif askData == '2':
-            Use_for = const.upper_case + const.numbers
-        elif askData == '3':
-            Use_for = const.numbers + const.special_characters
-        elif askData == '4':
-            Use_for = const.special_characters + const.lower_case
+        if 1 <= int(askData) <= 4:
+            if askData == '1':
+                Use_for = const.lower_case + const.upper_case
+            elif askData == '2':
+                Use_for = const.upper_case + const.numbers
+            elif askData == '3':
+                Use_for = const.numbers + const.special_characters
+            elif askData == '4':
+                Use_for = const.special_characters + const.lower_case
+        else:
+            print("Password length not correct. Pick a number between 1 and 4.")
+            exit()
 
     # Checks length of password.
 
@@ -33,17 +37,11 @@ def generatePassword():
         print("Password length not correct. Pick a number between 1 and 20.")
         exit()
     # Generate password.
-    password = "".join(random.sample(Use_for, length))
+    password = "".join(Generate.sample(Use_for, length))
 
     # Creates json file data setup
     data = {
     "Password" : password,
     }
-    # Creates file if not exits and add data to it.
-    with open('data.json', 'w') as f:
-        json.dump(data, f, sort_keys=True, indent=4)
 
-    # Use for read data from file
-    with open('data.json', 'r') as f:
-        config = json.load(f)
-        print('Password: {}'.format(config['Password']))
+    writeData(data)
