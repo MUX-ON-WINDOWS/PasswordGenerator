@@ -5,6 +5,7 @@ from assets.custom import writeData
 
 def generatePassword():
     # Use default question.
+
     dataCheckDefault = input("Default settings? (y/n): ")
     if dataCheckDefault.lower() == 'yes' or dataCheckDefault.lower() == 'y':
         Use_for = const.lower_case + const.upper_case + const.numbers + const.special_characters
@@ -28,11 +29,14 @@ def generatePassword():
             exit()
 
     # Checks length of password.
-
-    length = int(input('Enter your password length (1-20): '))
-    if 1 <= int(length) <= 20:
-        length = int(length)
-    else:
+    try :
+        length = int(input('Enter your password length (1-20): '))
+        if 1 <= int(length) <= 20:
+            length = int(length)
+        else:
+            print("Password length not correct. Pick a number between 1 and 20.")
+            exit()
+    except ValueError:
         print("Password length not correct. Pick a number between 1 and 20.")
         exit()
     # Generate password.
@@ -42,5 +46,4 @@ def generatePassword():
     data = {
     "Password" : password,
     }
-
     writeData(data)
